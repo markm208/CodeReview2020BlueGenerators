@@ -12,9 +12,18 @@
 
 using namespace std;
 
+//finds the length of the array
+int stringLength(char numString[]){
+	int i = 0;
+	while(numString[i] != '\0'){
+		i++;
+	}
+	return i;
+}
+
 //checks to see if numstring contains a period, if not returns false and the number in the cstring is not valid
 bool floatCheck(char numstring[]){
-    for (int i = 0; i < strlen(numstring);i++){
+    for (int i = 0; i < stringLength(numstring);i++){
         if(numstring[i] == '.'){
             if(numstring[i + 1] != '\0'){ //makes sure there is something after the decimal
             return true;
@@ -27,9 +36,9 @@ bool floatCheck(char numstring[]){
 //takes the number of sig digits after the decimal. Will use this for tempstrings size in the numerator function
 int sigDigits(char numstring[]){
     int sigdigits = 0;
-    for(int i = 0; i <strlen(numstring);i++){
+    for(int i = 0; i <stringLength(numstring);i++){
         if(numstring[i] == '.'){
-            for(int j = i + 1;j < strlen(numstring);j++){
+            for(int j = i + 1;j < stringLength(numstring);j++){
             if(numstring[i] != '0'){
                 sigdigits++;
                 }
@@ -41,16 +50,16 @@ int sigDigits(char numstring[]){
 }
 
 //will create a temp string of size sigDigits. The temp string will hold all the decimals after the period and need to be converted to a int
-char solveNumerator(char numstring[], int numerator){
+char solveNumerator(char numstring[]){
     int decnum = 0;         //will be used to increment the tempstring array
     int size = sigDigits(numstring); //sets int size to the amount of significant digits
     
     //contains the numbers after the decimal, sized to the number of sig digits...strlen yields 6 for some reason I cannot figure out
     char tempstring [size];
     
-    for(int i = 0; i < strlen(numstring); i++){
+    for(int i = 0; i < stringLength(numstring); i++){
         if(numstring[i] == '.'){
-            for(int j = i + 1; j < strlen(numstring);j++){
+            for(int j = i + 1; j < stringLength(numstring);j++){
                 tempstring[decnum] = numstring[j];      //tempstring now holds all the numbers after the decimal
                 decnum++;
             }
@@ -74,7 +83,7 @@ int solveDenominator(char numstring[], int denominator){
 //checks to make sure numstring is legal and then creates the mantissa
 bool mantissa(char numstring[], int & numerator, int& denominator){
     if(floatCheck(numstring)){
-    numerator = solveNumerator(numstring, numerator);
+    numerator = solveNumerator(numstring);
     denominator = solveDenominator(numstring, denominator);
     return true;
     }
@@ -90,7 +99,7 @@ int main(int argc, const char * argv[]) {
         //test code
         floatCheck(number);
         sigDigits(number);
-        solveNumerator(number,n);
+        solveNumerator(number);
         solveDenominator(number, d);
         
     }
