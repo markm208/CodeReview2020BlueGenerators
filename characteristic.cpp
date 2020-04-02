@@ -3,28 +3,24 @@
 using namespace std;
 
 
-
 int main()
 {
-	int characteristic=0;
+	int wholeNum = 0;
 	char numString[] = "100.0";
-	//char part = numString[1]+numString[0];
-	const char *str = (char *)numString[0];
-	characteristic = atoi(str);
-	//characteristic = (int)(numString[0]);
 
-	//characteristic = (int)(part);
-
-	if (characteristic == true)
+	if (characteristic(numString, wholeNum))
 	{
 		//Do something to make it to a int;
 		//characteristic = numString[1];
+		cout<<"Valid characteristic"<<endl;
+		cout<<characteristic<<endl;;
 	}
-
-	cout << characteristic;
-
-	//sscanf(numString[0], "%d", characteristic);
-	//cout << characteristic;
+	else
+	{
+		cout<<"not a valid characteristic"<<endl;
+	}
+	
+	cout << numString;
 
 	return 0;
 }
@@ -33,9 +29,9 @@ bool characteristic(char numString[], int &c)
 {
 	bool retVal = true;
 	int i=0;
-	while(numString[i] != '\0')
+	while(numString[i] != '.')
 	{
-		if(numString[i]=='.')
+		if(numString[i]=='\0')
 		{
 			retVal = false;
 			break;
@@ -44,3 +40,5 @@ bool characteristic(char numString[], int &c)
 	}
 	return retVal;
 }
+
+
