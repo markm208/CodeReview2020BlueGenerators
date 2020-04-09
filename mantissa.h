@@ -12,7 +12,14 @@
 #include <stdio.h>
 #pragma once
 
-bool mantissa(char numstring[], int & numerator, int& denominator);
 
+bool mantissa(const char numstring[], int & numerator, int& denominator);
+int stringLength(const char numString[]);
+bool floatCheck(const char numstring[]);
+int solveNumerator(const char numstring[]);
+bool digitCheck(char c);
+bool spaceCheck(char s);
+bool negativeCheck(const char numstring[]);
+bool DecChecker(const char numstring[]);
 
 #endif /* Mantissa_hpp */
