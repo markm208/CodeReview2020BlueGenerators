@@ -146,7 +146,6 @@ void testCharacteristicAndMantissa()
 void shouldConvert(const char number[], int expectedCharacteristic, int expectedNumerator, int expectedDenominator)
 {
     int c, n, d;
-    c = 0;
 
     //if the conversion from C string to integers can take place
     if (characteristic(number, c) && mantissa(number, n, d))
