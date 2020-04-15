@@ -1,6 +1,7 @@
 #include <iostream>
 #include <climits>
 #include "mantissa.h"
+#include "characteristic.h"
 
 using namespace std;
 
@@ -148,9 +149,9 @@ void shouldConvert(const char number[], int expectedCharacteristic, int expected
     c = 0;
 
     //if the conversion from C string to integers can take place
-    if (/*characteristic(number, c) &&*/ mantissa(number, n, d))
+    if (characteristic(number, c) && mantissa(number, n, d))
     {
-        if (/*c == expectedCharacteristic &&*/ n == expectedNumerator && d == expectedDenominator)
+        if (c == expectedCharacteristic && n == expectedNumerator && d == expectedDenominator)
         {
             //test passes, do not print anything on a successful test
         }
@@ -158,13 +159,13 @@ void shouldConvert(const char number[], int expectedCharacteristic, int expected
         {
             cout << "Test failed: '" << number << "' "
                 << "was parsed but did not produce the expected results" << endl;
-            /*
+            
             if (expectedCharacteristic != c)
             {
                 cout << "expected characteristic: " << expectedCharacteristic << " "
                     << "actual characteristic: " << c << endl;
             }
-            */
+            
             if (expectedNumerator != n)
             {
                 cout << "expected numerator: " << expectedNumerator << " "
@@ -194,7 +195,7 @@ void shouldNotConvert(const char number[])
     c = 0;
 
     //if the conversion from C string to integers can take place
-    if (/*characteristic(number, c) &&*/ mantissa(number, n, d))
+    if (characteristic(number, c) && mantissa(number, n, d))
     {
         cout << "Test failed: '" << number << "' "
             << "was parsed when it should NOT have been." << endl;
